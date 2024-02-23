@@ -23,9 +23,31 @@ namespace WPF_ThemeResource
 
         private static readonly string[] ResourceFiles = new string[]
             {
-                @"..\..\..\WPF-ThemeResource\Themes\Light.xaml",
                 @"..\..\..\WPF-ThemeResource\Themes\Common.xaml",
+                @"..\..\..\WPF-ThemeResource\Themes\Light.xaml",
+                @"..\..\..\WPF-ThemeResource\Themes\Dark.xaml",
             };
+
+        private static List<string> AdditionalThemeResourceKeys = new List<string>()
+        {
+            "SystemAccentColor",
+            "SystemAccentColorPrimary",
+            "SystemAccentColorSecondary",
+            "SystemAccentColorTertiary",
+            "SystemAccentBrush",
+            "SystemAccentColorPrimaryBrush",
+            "SystemAccentColorSecondaryBrush",
+            "SystemAccentColorTertiaryBrush",
+            "AccentTextFillColorPrimaryBrush",
+            "AccentTextFillColorSecondaryBrush",
+            "AccentTextFillColorTertiaryBrush",
+            "AccentFillColorSelectedTextBackgroundBrush",
+            "AccentFillColorDefaultBrush",
+            "AccentFillColorSecondaryBrush",
+            "AccentFillColorTertiaryBrush",
+            "AccentFillColorDisabledBrush",
+            "SystemFillColorAttentionBrush"
+        };
 
         static void Main(string[] args)
         {
@@ -51,6 +73,11 @@ namespace WPF_ThemeResource
                         keys.Add(group);
                     }
                 }
+            }
+
+            foreach (var key in AdditionalThemeResourceKeys)
+            {
+                keys.Add(key);
             }
 
             // Generate ThemeResourceKey.cs file

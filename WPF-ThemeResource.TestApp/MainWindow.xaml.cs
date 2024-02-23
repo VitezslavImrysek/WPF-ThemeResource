@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WPF_ThemeResource.TestApp
 {
@@ -28,16 +17,36 @@ namespace WPF_ThemeResource.TestApp
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var theme = ApplicationThemeManager.RequestedTheme;
-
             switch (theme)
             {
                 case ApplicationTheme.Dark:
-                    ApplicationThemeManager.RequestedTheme = ApplicationTheme.Light;
+                    theme = ApplicationTheme.Light;
                     break;
                 case ApplicationTheme.Light:
-                    ApplicationThemeManager.RequestedTheme = ApplicationTheme.Dark;
+                    theme = ApplicationTheme.Dark;
                     break;
             }
+
+            ApplicationThemeManager.Apply(ApplicationThemeManager.SystemAccentColor, theme);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var colors = new List<Color>()
+            {
+                (Color)ColorConverter.ConvertFromString("#3379d9"),
+                Colors.Purple,
+                Colors.Green,
+                Colors.CornflowerBlue,
+                Colors.Orange
+            };
+
+            var colorIndex = colors.IndexOf(ApplicationThemeManager.SystemAccentColor);
+            colorIndex = (colorIndex + 1) % colors.Count;
+
+            var color = colors[colorIndex];
+
+            ApplicationThemeManager.Apply(color, ApplicationThemeManager.RequestedTheme);
         }
     }
 }

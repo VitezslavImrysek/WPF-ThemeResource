@@ -4,12 +4,12 @@ using System.Windows;
 
 namespace WPF_ThemeResource
 {
-    public class ResourceDictionaryEx : ResourceDictionary, ISupportInitialize
+    public class ThemeResourceDictionary : ResourceDictionary, ISupportInitialize
     {
         private ApplicationTheme? _theme;
         private bool _initialized = false;
 
-        public ResourceDictionaryEx()
+        public ThemeResourceDictionary()
         {
             
         }
@@ -20,9 +20,12 @@ namespace WPF_ThemeResource
         {
             base.EndInit();
 
-            _initialized = true;
-            ApplicationThemeManager.AddThemeDictionary(this);
-            RefreshTheme();
+            if (!_initialized)
+            {
+                _initialized = true;
+                ApplicationThemeManager.AddThemeDictionary(this);
+                RefreshTheme();
+            }
         }
 
         internal void OnThemeChanged()
