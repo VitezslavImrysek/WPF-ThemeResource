@@ -11,7 +11,7 @@ namespace WPF_ThemeResource
 
         public ThemeResourceDictionary()
         {
-            
+            ApplicationThemeManager.AddThemeDictionary(this);
         }
 
         public IDictionary ThemeDictionaries { get; set; } = new ResourceDictionary();
@@ -23,7 +23,6 @@ namespace WPF_ThemeResource
             if (!_initialized)
             {
                 _initialized = true;
-                ApplicationThemeManager.AddThemeDictionary(this);
                 RefreshTheme();
             }
         }
